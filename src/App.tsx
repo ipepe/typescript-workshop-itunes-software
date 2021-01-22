@@ -5,7 +5,7 @@ function App({ title }: { title: string }) {
   return (
     <div className={styles['App']}>
       <header className={styles['App-header']}>
-        <Button colorScheme="blue">Hello iTunes Software!</Button>
+        <Button colorScheme="blue">Hello {title}!</Button>
       </header>
     </div>
   );
