@@ -7,8 +7,8 @@ export type Ebook = {
   trackName: string;
   artistName: string;
   formattedPrice: string;
-  averageUserRating: number;
-  userRatingCount: number;
+  averageUserRating: number | undefined;
+  userRatingCount: number | undefined;
 };
 
 type ItunesState = {
