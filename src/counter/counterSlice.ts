@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {StoreState} from "../store";
+import { StoreState } from '../store';
 
 type CounterState = {
   count: number;
@@ -21,5 +21,6 @@ export const counterSlice = createSlice({
 });
 export const { incCount, decCount } = counterSlice.actions;
 
-export const selectCount = (storeState: StoreState) => (storeState: { counter: CounterState }) =>
-  storeState.counter.count;
+export const selectCount = (storeState: StoreState) => (storeState: {
+  counter: CounterState;
+}) => storeState.counter.count;
