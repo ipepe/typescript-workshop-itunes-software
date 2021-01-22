@@ -19,8 +19,7 @@ export const counterSlice = createSlice({
     },
   },
 });
+
 export const { incCount, decCount } = counterSlice.actions;
 
-export const selectCount = (storeState: StoreState) => (storeState: {
-  counter: CounterState;
-}) => storeState.counter.count;
+export const selectCount = (storeState: StoreState) => storeState.counter.count;
