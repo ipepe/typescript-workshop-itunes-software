@@ -36,9 +36,12 @@ export function* onFetchEbooks(
   action: PayloadActionFromCreator<typeof fetchEbooks>
 ) {
   console.log('fetching ebooks for', action.payload);
-  const ebooks: ApiEbook[] = yield call(getEbooks, action.payload);
-  yield put(setEbooks(ebooks));
-  console.log('fetching done');
+  try {
+    const ebooks: ApiEbook[] = yield call(getEbooks, action.payload);
+    yield put(setEbooks(ebooks));
+  } finally {
+    console.log('fetching done');
+  }
 }
 
 export function* itunesSaga() {
