@@ -1,15 +1,11 @@
 import styles from './App.module.css';
-import { Counter } from './counter';
-import { Button, Stack } from '@chakra-ui/react';
+import { Itunes } from './itunes';
 
 function App({ title }: { title: string }) {
   return (
     <div className={styles['App']}>
       <header className={styles['App-header']}>
-        <Stack>
-          <Button colorScheme="blue">Hello {title}!</Button>
-          <Counter />
-        </Stack>
+        <Itunes />
       </header>
     </div>
   );
