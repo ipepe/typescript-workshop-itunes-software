@@ -1,10 +1,6 @@
-import { ActionCreatorWithPayload, PayloadAction } from '@reduxjs/toolkit';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { PayloadActionFromCreator } from '../utils';
 import { incCount, incCountDelayed } from './counterSlice';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-
-type PayloadActionFromCreator<AC> = AC extends ActionCreatorWithPayload<infer P>
-  ? PayloadAction<P>
-  : unknown;
 
 export async function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
