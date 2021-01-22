@@ -1,49 +1,51 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as yup from 'yup';
 import { PayloadActionFromCreator } from '../utils';
-import { fetchEbooks, setEbooks } from './itunesSlice';
+import { fetchSoftware, setSoftware, Software } from './itunesSlice';
 
-const ebookSchema = yup.object({
-  trackId: yup.number().defined(),
-  artworkUrl100: yup.string().defined(),
-  trackName: yup.string().defined(),
+const softwareSchema = yup.object({
   artistName: yup.string().defined(),
+  artworkUrl100: yup.string().defined(),
+  trackId: yup.number().defined(),
+  trackName: yup.string().defined(),
   formattedPrice: yup.string().defined(),
   averageUserRating: yup.number(),
   userRatingCount: yup.number(),
 });
 
-type ApiEbook = yup.InferType<typeof ebookSchema>;
+type ApiSoftware = yup.InferType<typeof softwareSchema>;
 
-export async function getEbooks(searchTerm: string): Promise<ApiEbook[]> {
+export async function getApplications(
+  searchTerm: string
+): Promise<ApiSoftware[]> {
   const response = await fetch(
     `https://itunes.apple.com/search?term=${encodeURIComponent(
       searchTerm
-    )}&entity=ebook`
+    )}&entity=software`
   );
   const rawData: any = await response.json();
   const data = await yup
     .object({
       resultCount: yup.number().defined(),
-      results: yup.array(ebookSchema).defined(),
+      results: yup.array(softwareSchema).defined(),
     })
     .validate(rawData);
 
   return data.results;
 }
 
-export function* onFetchEbooks(
-  action: PayloadActionFromCreator<typeof fetchEbooks>
+export function* onFetchSoftware(
+  action: PayloadActionFromCreator<typeof fetchSoftware>
 ) {
-  console.log('fetching ebooks for', action.payload);
+  console.log('fetching software for', action.payload);
   try {
-    const ebooks: ApiEbook[] = yield call(getEbooks, action.payload);
-    yield put(setEbooks(ebooks));
+    const software: Software[] = yield call(getApplications, action.payload);
+    yield put(setSoftware(software));
   } finally {
     console.log('fetching done');
   }
 }
 
 export function* itunesSaga() {
-  yield takeLatest(fetchEbooks.type, onFetchEbooks);
+  yield takeLatest(fetchSoftware.type, onFetchSoftware);
 }

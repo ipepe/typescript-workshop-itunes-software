@@ -1,33 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StoreState } from '../store';
 
-export type Ebook = {
+export type Software = {
+  artistName: string;
   trackId: number;
   artworkUrl100: string;
+  genres: string[];
   trackName: string;
-  artistName: string;
+
   formattedPrice: string;
   averageUserRating: number | undefined;
   userRatingCount: number | undefined;
 };
 
 type ItunesState = {
-  ebooks: Ebook[];
+  software: Software[];
 };
 
 export const itunesSlice = createSlice({
   name: 'itunes',
   initialState: {
-    ebooks: [],
+    software: [],
   } as ItunesState,
   reducers: {
-    fetchEbooks(state, action: PayloadAction<string>) {},
-    setEbooks(state, action: PayloadAction<Ebook[]>) {
-      state.ebooks = action.payload;
+    fetchSoftware(state, action: PayloadAction<string>) {},
+    setSoftware(state, action: PayloadAction<Software[]>) {
+      state.software = action.payload;
     },
   },
 });
 
-export const { fetchEbooks, setEbooks } = itunesSlice.actions;
+export const { fetchSoftware, setSoftware } = itunesSlice.actions;
 
-export const selectEbooks = (state: StoreState) => state.itunes.ebooks;
+export const selectSoftware = (state: StoreState) => state.itunes.software;
