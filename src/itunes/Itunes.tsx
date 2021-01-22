@@ -14,7 +14,7 @@ export function Itunes() {
         <Input
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
-          onKeyUp={(e) => ((e.key === 'Enter' || e.keyCode === 13) && dispatch(fetchSoftware(searchTerm)))}
+          onKeyUp={(e) => (e.key === 'Enter' && dispatch(fetchSoftware(searchTerm)))}
         />
       </Stack>
       <SoftwareTable software={software} />
