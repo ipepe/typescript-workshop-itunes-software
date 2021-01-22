@@ -1,5 +1,5 @@
-import { incCountDelayed, incCount } from './counterSlice';
 import { ActionCreatorWithPayload, PayloadAction } from '@reduxjs/toolkit';
+import { incCount, incCountDelayed } from './counterSlice';
 import { put, takeEvery } from 'redux-saga/effects';
 
 type PayloadActionFromCreator<AC> = AC extends ActionCreatorWithPayload<infer P>

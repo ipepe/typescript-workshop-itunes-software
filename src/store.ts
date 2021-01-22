@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { counterSaga } from './counter/counterSaga';
 import { all } from 'redux-saga/effects';
 
-const sagaMiddleware = createSagaMiddleware({});
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
