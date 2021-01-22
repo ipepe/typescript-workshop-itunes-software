@@ -14,13 +14,8 @@ export function Itunes() {
         <Input
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
+          onKeyUp={(e) => ((e.key === 'Enter' || e.keyCode === 13) && dispatch(fetchSoftware(searchTerm)))}
         />
-        <Button
-          colorScheme="blue"
-          onClick={() => dispatch(fetchSoftware(searchTerm))}
-        >
-          Search
-        </Button>
       </Stack>
       <SoftwareTable software={software} />
     </Stack>
