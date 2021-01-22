@@ -8,7 +8,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App title="Ebooks app" />
+      <App title="itunes-software" />
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
