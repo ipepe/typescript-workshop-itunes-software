@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as yup from 'yup';
 import { PayloadActionFromCreator } from '../utils';
-import { fetchSoftware, setSoftware } from './itunesSlice';
+import {fetchSoftware, setSoftware, Software} from './itunesSlice';
 
 const softwareSchema = yup.object({
   artistName: yup.string().defined(),
@@ -9,7 +9,7 @@ const softwareSchema = yup.object({
   trackId: yup.number().defined(),
   trackName: yup.string().defined(),
   genres: yup.array(yup.string().defined()).defined(),
-  formattedPrice: yup.string().defined(),
+  formattedPrice: yup.string(),
   averageUserRating: yup.number(),
   userRatingCount: yup.number(),
 });
@@ -40,7 +40,7 @@ export function* onFetchSoftware(
 ) {
   console.log('fetching software for', action.payload);
   try {
-    const software: ApiSoftware[] = yield call(getApplications, action.payload);
+    const software: Software[] = yield call(getApplications, action.payload);
     yield put(setSoftware(software));
   } finally {
     console.log('fetching done');
